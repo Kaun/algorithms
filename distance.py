@@ -16,16 +16,11 @@ def distance(arr):
                 l = end_pos - start_pos
                 if l < new_arr[start_pos] or count==1:
                     new_arr[start_pos] = l
-                    start_pos += 1
-                else:
-                    start_pos += 1
+                start_pos += 1
             start_pos = end_pos
-            end_pos += 1
         else:
             new_arr[end_pos] = end_pos - start_pos
-            end_pos += 1
-            
-        
+        end_pos += 1
     return new_arr
 
 
