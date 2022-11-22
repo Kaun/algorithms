@@ -1,4 +1,4 @@
-# id 75468351
+# id 75671532
 
 '''
 Тимофей ищет место, чтобы построить себе дом. Улица, на которой он хочет жить,
@@ -54,5 +54,6 @@ def distance(arr):
     return new_arr
 
 
-input_arr = read_input()
-print(" ".join(map(str, distance(input_arr))))
+if __name__ == '__main__':
+    input_arr = read_input()
+    print(" ".join(map(str, distance(input_arr))))

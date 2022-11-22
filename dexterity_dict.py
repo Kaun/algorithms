@@ -1,4 +1,4 @@
-# id 75469456
+# id 75671437
 
 '''
 Игра «Тренажёр для скоростной печати» представляет собой поле из клавиш 4x4.
@@ -24,7 +24,6 @@
 Выведите единственное число –— максимальное количество баллов,
 которое смогут набрать Гоша и Тимофей.
 '''
-import collections
 
 
 def read_input():
@@ -36,7 +35,10 @@ def read_input():
 
 
 def count_sym(input_str):
-    return list(collections.Counter(input_str).values())
+    chars = dict.fromkeys(input_str, 0)
+    for symbol in input_str:
+        chars[symbol] += 1
+    return list(chars.values())
 
 
 def dexterity(count, k):

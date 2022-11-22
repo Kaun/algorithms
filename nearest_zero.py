@@ -34,5 +34,4 @@ def nearest_zero(arr, index_zero):
 
 a = read_input()
 zero = find_zero(a)
-print(" ".join(map(str,nearest_zero(a, zero))))
-    
+print(" ".join(map(str,nearest_zero(a, zero)))
