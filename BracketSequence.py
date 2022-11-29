@@ -57,6 +57,8 @@ def is_correct_bracket_seq(str):
     if len(stack.opening_brack) != len(stack.closing_brack):
         return False
     
+    print(stack.opening_brack)
+    print(stack.closing_brack)
     
     for i in range(len(stack.opening_brack)):
         opening, closing = stack.pop()
