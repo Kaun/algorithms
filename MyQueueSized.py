@@ -28,14 +28,17 @@ class MyQueueSized:
         return self.size_now
 
     def peek(self):
+        if self.size_now == 0:
+            return None
         return self.queue[self.head]
-
 
     def push(self, value):
         if self.size_now < self.max_size:
             self.queue[self.tail] = value
             self.tail = (self.tail + 1) % self.max_size
             self.size_now += 1
+        else:
+            return 'error'
 
     def pop(self):
         if self.size_now == 0:
@@ -61,7 +64,9 @@ def read_input():
             command = command_str[0]
             
         if command == 'push':
-            queu.push(int(value))
+            push = queu.push(int(value))
+            if push == 'error':
+                print('error')
         if command == 'pop':
             r = queu.pop()
             if r is None:
