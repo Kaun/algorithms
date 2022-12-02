@@ -1,4 +1,4 @@
-#id 77700997
+# id 77700997
 class MyQueueSized:
     def __init__(self, max_size):
         self.queue = [None] * max_size
