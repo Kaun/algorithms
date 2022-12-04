@@ -1,29 +1,28 @@
-# id 77712944
-
+# id 78515436
 class MyQueueSized:
     def __init__(self, max_size):
-        self.queue = [None] * max_size
-        self.max_size = max_size
-        self.head = 0
-        self.tail = 0
-        self.size_now = 0
+        self.__queue = [None] * max_size
+        self.__max_size = max_size
+        self.__size_now = 0
 
+    operations = {'+': (lambda x, y: x + y),
+                  '-': (lambda x, y: x - y),
+                  '*': (lambda x, y: x * y),
+                  '/': (lambda x, y: x // y),
+                  }
+    
     def push(self, value):
-        if self.size_now < self.max_size:
-            self.queue[self.tail] = value
-            self.tail = (self.tail + 1) % self.max_size
-            self.size_now += 1
-        else:
-            return 'error'
+        if self.__size_now >= self.__max_size:
+            raise OverflowError("The deck is full!")
+        self.__queue[self.__size_now] = value
+        self.__size_now += 1
 
     def pop_back(self):
-        if self.size_now == 0:
-            return 'error'
-        self.tail -= 1
-        res = self.queue[self.tail]
-        self.queue[self.tail] = None
-        self.tail = self.tail % self.max_size
-        self.size_now -= 1
+        if self.__size_now == 0:
+            raise IndexError("The deck is empty!")
+        self.__size_now -= 1
+        res = self.__queue[self.__size_now]
+        self.__queue[self.__size_now] = None
         return res
 
 
@@ -31,23 +30,17 @@ def read_input():
     input_list = input().split()
     size = len(input_list)
     queu = MyQueueSized(size)
-    
+
     for i in input_list:
         if i in '+-*/':
             num1 = queu.pop_back()
             num2 = queu.pop_back()
-            if i == '+':
-                res = num2 + num1
-            elif i == '-':
-                res = num2 - num1
-            elif i == '*':
-                res = num2 * num1
-            elif i == '/':
-                res = num2 // num1
-            queu.push(res)
+            func = queu.operations.get(i)
+            queu.push(func(num2, num1))
         else:
             queu.push(int(i))
     return queu.pop_back()
+
 
 if __name__ == '__main__':
     print(read_input())
