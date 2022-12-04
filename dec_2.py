@@ -1,30 +1,30 @@
 # id 77700997
 class MyQueueSized:
     def __init__(self, max_size):
-        self.queue = [None] * max_size
-        self.max_size = max_size
-        self.head = 0
-        self.tail = 0
-        self.size_now = 0
+        self.__queue = [None] * max_size
+        self.__max_size = max_size
+        self.__head = 0
+        self.__tail = 0
+        self.__size_now = 0
 
     def push(self, value):
-        self.queue[self.tail] = value
-        self.tail = (self.tail + 1) % self.max_size
+        self.queue[self.__tail] = value
+        self.tail = (self.__tail + 1) % self.__max_size
         self.size_now += 1
 
-    def pop(self):
-        res = self.queue[self.head]
-        self.queue[self.head] = None
-        self.head = (self.head + 1) % self.max_size
-        self.size_now -= 1
+    def pop_front(self):
+        res = self.queue[self.__head]
+        self.__queue[self.__head] = None
+        self.head = (self.__head + 1) % self.__max_size
+        self.__size_now -= 1
         return res
 
     def pop_back(self):
-        self.tail -= 1
-        res = self.queue[self.tail]
-        self.queue[self.tail] = None
-        self.tail = self.tail % self.max_size
-        self.size_now -= 1
+        self.__tail -= 1
+        res = self.__queue[self.__tail]
+        self.__queue[self.__tail] = None
+        self.__tail = self.__tail % self.__max_size
+        self.__size_now -= 1
         return res
 
 

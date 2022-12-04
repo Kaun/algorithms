@@ -13,13 +13,13 @@ class MyQueueSized:
     
     def push(self, value):
         if self.__size_now >= self.__max_size:
-            raise OverflowError("The deck is full!")
+            raise OverflowError("The stack is full!")
         self.__queue[self.__size_now] = value
         self.__size_now += 1
 
     def pop_back(self):
         if self.__size_now == 0:
-            raise IndexError("The deck is empty!")
+            raise IndexError("The stack is empty!")
         self.__size_now -= 1
         res = self.__queue[self.__size_now]
         self.__queue[self.__size_now] = None
