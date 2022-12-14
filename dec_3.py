@@ -6,13 +6,13 @@ class Deque:
         self.__head = 0
         self.__tail = 0
         self.__size_now = 0
-    
+
     def is_empty(self):
         return self.__size_now == 0
 
     def is_full(self):
         return self.__size_now == self.__max_size
-    
+
     def push_front(self, value):
         if self.is_full():
             raise OverflowError("The deck is full!")
