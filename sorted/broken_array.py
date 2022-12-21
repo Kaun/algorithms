@@ -5,7 +5,6 @@ def read_input():
     return arr, target
 
 
-
 def binary_search(arr, value):
     start = 0
     end = len(arr) - 1
@@ -16,20 +15,7 @@ def binary_search(arr, value):
         if arr[middle] < value:
             start = middle + 1
         else:
-            end = middle -1
-    return -1
-    
-
-
-def broken_search(nums, target):
-    pivot = find_pivot(nums)
-    if pivot is not None:
-        pivot += 1
-    else:
-        pivot = 0
-    if target < pivot:
-        return binary_search(nums[:pivot], target)
-    return pivot + binary_search(nums[pivot:], target)
+            end = middle - 1
 
 
 def find_pivot(arr):
@@ -38,17 +24,32 @@ def find_pivot(arr):
     while start < end:
         middle = (start + end) // 2
         if arr[middle] > arr[middle + 1]:
-            return middle
+            return middle + 1
         if arr[middle] < arr[end]:
             end = middle
         else:
             start = middle
-    
-
-if __name__ == '__main__':
-    arr, target = read_input()
-    print(broken_search(arr, target))
 
 
-# arr = [5,1]
-# print(broken_search(arr, 1))
+def broken_search(nums, target):
+    pivot = find_pivot(nums)
+    res = None
+    if pivot is None:
+        pivot = 0
+    if nums[0] <= target <= nums[pivot-1]:
+        res = binary_search(nums[:pivot], target)
+    elif nums[pivot] <= target <= nums[-1]:
+        res = binary_search(nums[pivot:], target)
+        if res is not None:
+            res = pivot + res
+    if res is not None:
+        return res
+    return -1
+
+
+# if __name__ == '__main__':
+#     arr, target = read_input()
+#     print(broken_search(arr, target))
+
+a = [1]
+print(broken_search(a,1))
